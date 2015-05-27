@@ -25,7 +25,7 @@ m=np.load('Ia_Mag.npy')
 tsl=TSL2561()
 time_array=[]
 luxarray=[]
-for i in range(0,len(m),2):      # 101 because it stops when it finishes 100  
+for i in range(0,len(m)):      # 101 because it stops when it finishes 100  
      
     red.ChangeDutyCycle(m[i])
     l1=[]
