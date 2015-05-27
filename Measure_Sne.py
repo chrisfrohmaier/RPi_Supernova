@@ -18,7 +18,7 @@ red.start(0)              # red fully on (100%)
 # now the fun starts, we'll vary the duty cycle to   
 # dim/brighten the leds, so one is bright while the other is dim  
   
-pause_time = 0.01           # you can change this to slow down/speed up  
+pause_time = 0.1           # you can change this to slow down/speed up  
 t=np.load('Ia_Time.npy')
 m=np.load('Ia_Mag.npy')
 
