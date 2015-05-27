@@ -30,7 +30,7 @@ for i in range(0,len(m)):      # 101 because it stops when it finishes 100
     red.ChangeDutyCycle(m[i])
     l1=[]
     for j in range(0,100):
-    	l1.append(tsl.readLux(gain=1))
+    	l1.append(tsl.readLux(gain=16))
     time_array.append(t[i]);luxarray.append(np.mean(l1))
     sleep(pause_time) 
 
