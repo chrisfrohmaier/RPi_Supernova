@@ -35,6 +35,6 @@ for i in range(0,len(m)):      # 101 because it stops when it finishes 100
     print np.mean(l1)
     time_array.append(t[i]);luxarray.append(np.sum(l1))
     sleep(pause_time) 
-
+red.ChangeDutyCycle(0)
 plt.scatter(time_array, luxarray)
 plt.show()
