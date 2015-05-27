@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO # always needed with RPi.GPIO
 from time import sleep  # pull in the sleep function from time module  
 import numpy as np  
 from TSL2561 import TSL2561
+import matplotlib.pyplot as plt
 GPIO.setmode(GPIO.BCM)  # choose BCM or BOARD numbering schemes. I use BCM  
   
 GPIO.setup(23, GPIO.OUT)# set GPIO 25 as output for white led  
@@ -22,9 +23,13 @@ t=np.load('Ia_Time.npy')
 m=np.load('Ia_Mag.npy')
 
 tsl=TSL2561()
-
+time_array=[]
+luxarray=[]
 for i in range(0,len(m)):      # 101 because it stops when it finishes 100  
      
     red.ChangeDutyCycle(m[i])
-    print t[i], tsl.readLux(gain=16)
+    time_array.append(t[i]);luxarray.append(tsl.readLux(gain=16))
     sleep(pause_time) 
+
+plt.scatter(time_array, luxarray)
+plt.show()
