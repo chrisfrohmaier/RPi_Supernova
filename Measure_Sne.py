@@ -32,7 +32,7 @@ for i in range(0,len(m),2):      # 101 because it stops when it finishes 100
     l1=[]
     for j in range(0,5):
     	l1.append(tsl.readFull())
-    	sleep(pause_time*5)
+    	sleep(pause_time)
     print np.mean(l1)
     time_array.append(t[i]);luxarray.append(np.mean(l1))
     #time_array.append(t[i]);luxarray.append(tsl.readFull())
