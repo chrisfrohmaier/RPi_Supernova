@@ -49,6 +49,12 @@ while True:
 		input_state == True
 
 		red.ChangeDutyCycle(0)
-		
+		plt.tick_params(axis='y',          # changes apply to the x-axis
+    which='both',      # both major and minor ticks are affected
+    left='off',      # ticks along the bottom edge are off
+    right='off')
+		plt.xlabel('Days since Supernova Explosion')
+		plt.ylabel('Brightness (Increasing -->)')
+		plt.ylim(ymin=0)
 		plt.scatter(time_array, luxarray)
 		plt.draw()
