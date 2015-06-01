@@ -50,7 +50,7 @@ try:
 			    for j in range(0,5):
 			    	l1.append(tsl.readFull())
 			    	sleep(pause_time)
-			    sys.stdout.write("Hubble's Observed Brightness: %d   \r" % (np.median(l1)) )
+			    sys.stdout.write("  Hubble's Observed Brightness: %d   \r" % (np.median(l1)) )
 
 			    
 
@@ -63,6 +63,7 @@ try:
 			input_state == True
 
 			red.ChangeDutyCycle(0)
+			cx1.ChangeDutyCycle(0)
 			plt.title('Object Lightcurve')
 			plt.tick_params(axis='y',which='both', left='off', right='off', labelleft='off')
 			plt.xlabel('Days since Supernova Explosion')
