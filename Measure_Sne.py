@@ -38,5 +38,6 @@ for i in range(0,len(m),2):      # 101 because it stops when it finishes 100
     #time_array.append(t[i]);luxarray.append(tsl.readFull())
     sleep(pause_time) 
 red.ChangeDutyCycle(0)
+GPIO.cleanup()
 plt.scatter(time_array, luxarray)
 plt.show()
