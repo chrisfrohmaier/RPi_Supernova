@@ -22,12 +22,16 @@ pause_time = 0.1           # you can change this to slow down/speed up
 t=np.load('Ia_Time.npy')
 m=np.load('Ia_Mag.npy')
 
+plt.ion()
 tsl=TSL2561()
-time_array=[]
-luxarray=[]
+time_array=[0]
+luxarray=[0]
 print tsl.readLux(gain=1)
-plt.xlim(-5,70)
-plt.draw()
+
+line,=plt.plot(luxarray)
+plt.xlim([-5,70])
+plt.ylim([0,350])
+
 while True:
 	input_state=GPIO.input(22)
 	plt.clf()
@@ -43,7 +47,8 @@ while True:
 		    print np.mean(l1)
 		    time_array.append(t[i]);luxarray.append(np.mean(l1))
 		    #time_array.append(t[i]);luxarray.append(tsl.readFull())
-		    plt.scatter(time_array[-1], luxarray[-1])
+		    line.set_xdata(np.arange(len(luxarray)))
+		    line.set_ydata(ydata)
 		    plt.draw()
 		    sleep(pause_time)
 		input_state == True
