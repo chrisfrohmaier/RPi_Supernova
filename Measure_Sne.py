@@ -40,8 +40,10 @@ while True:
 		    print np.mean(l1)
 		    time_array.append(t[i]);luxarray.append(np.mean(l1))
 		    #time_array.append(t[i]);luxarray.append(tsl.readFull())
-		    sleep(pause_time) 
-red.ChangeDutyCycle(0)
-GPIO.cleanup()
-plt.scatter(time_array, luxarray)
-plt.show()
+		    sleep(pause_time)
+		input_state == True
+
+	red.ChangeDutyCycle(0)
+	GPIO.cleanup()
+	plt.scatter(time_array, luxarray)
+	plt.show()
