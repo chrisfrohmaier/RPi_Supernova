@@ -4,6 +4,7 @@ from time import sleep  # pull in the sleep function from time module
 import numpy as np  
 from TSL2561 import TSL2561
 import matplotlib.pyplot as plt
+import sys
 GPIO.setmode(GPIO.BCM)  # choose BCM or BOARD numbering schemes. I use BCM  
   
 GPIO.setup(18, GPIO.OUT)# set GPIO 25 as output for white led  
@@ -42,8 +43,9 @@ while True:
 		    for j in range(0,5):
 		    	l1.append(tsl.readFull())
 		    	sleep(pause_time)
-		    print np.mean(l1)
-		    time_array.append(t[i]);luxarray.append(np.mean(l1))
+		    sys.stdout.write("Hubble's Observed Brightness: %d%%   \r" % (np.median(l1)) )
+		    sys.stdout.flush()
+		    time_array.append(t[i]);luxarray.append(np.median(l1))
 		    #time_array.append(t[i]);luxarray.append(tsl.readFull())
 		    sleep(pause_time)
 		input_state == True
