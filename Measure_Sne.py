@@ -43,7 +43,8 @@ while True:
 		    for j in range(0,5):
 		    	l1.append(tsl.readFull())
 		    	sleep(pause_time)
-		    sys.stdout.write("Hubble's Observed Brightness: %d   \r \n %% of Observation Complete: %d%%   \r" % (np.median(l1)) ((i/len(m))*100) )
+		    #sys.stdout.write("Hubble's Observed Brightness: %d   \r \n %% of Observation Complete: %d%%   \r" % (np.median(l1)) ((i/len(m))*100) )
+		    sys.stdout.write("Hubble's Observed Brightness:"+str(np.median(l1))+" \r \n %% of Observation Complete:"+str(((i/len(m))*100))+"%%   \r")
 		    
 
 		    sys.stdout.flush()
