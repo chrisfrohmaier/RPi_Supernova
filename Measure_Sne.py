@@ -33,7 +33,7 @@ while True:
 	input_state=GPIO.input(22)
 	
 	if input_state == False:
-		print 'Button Pressed'
+		print '--- Hubble Observation Started ----'
 		time_array=[]
 		luxarray=[]
 		for i in range(0,len(m),2):      # 101 because it stops when it finishes 100  
@@ -43,11 +43,12 @@ while True:
 		    for j in range(0,5):
 		    	l1.append(tsl.readFull())
 		    	sleep(pause_time)
-		    sys.stdout.write("Hubble's Observed Brightness: %d%%   \r" % (np.median(l1)) )
+		    sys.stdout.write("Hubble's Observed Brightness: %d   \r" % (np.median(l1)) )
 		    sys.stdout.flush()
 		    time_array.append(t[i]);luxarray.append(np.median(l1))
 		    #time_array.append(t[i]);luxarray.append(tsl.readFull())
 		    sleep(pause_time)
+		print '--- Hubble Observation Finished ----'
 		input_state == True
 
 		red.ChangeDutyCycle(0)
