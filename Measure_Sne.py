@@ -7,8 +7,9 @@ import matplotlib.pyplot as plt
 import sys
 GPIO.setmode(GPIO.BCM)  # choose BCM or BOARD numbering schemes. I use BCM  
   
-GPIO.setup(18, GPIO.OUT)# set GPIO 25 as output for white led  
-#GPIO.setup(24, GPIO.OUT)# set GPIO 24 as output for red led  
+GPIO.setup(18, GPIO.OUT)# set GPIO 25 as output for supernova led  
+GPIO.setup(23, GPIO.OUT)# set GPIO 24 as output for green led  
+
 GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 #white = GPIO.PWM(24,10000)    # create object white for PWM on port 24 at 100 Hertz  
 red = GPIO.PWM(18, 400)      # create object red for PWM on port 23 at 100 Hertz  
@@ -29,10 +30,12 @@ print tsl.readLux(gain=1)
 plt.ion()
 plt.xlim(-5,75)
 
+
 while True:
 	input_state=GPIO.input(22)
 	
 	if input_state == False:
+		GPIO.output(23, False)
 		print '--- Hubble Observation Started ----'
 		time_array=[]
 		luxarray=[]
@@ -52,6 +55,7 @@ while True:
 		    #time_array.append(t[i]);luxarray.append(tsl.readFull())
 		    sleep(pause_time)
 		print '--- Hubble Observation Finished ----'
+		GPIO.output(23, True)
 		input_state == True
 
 		red.ChangeDutyCycle(0)
