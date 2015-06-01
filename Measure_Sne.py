@@ -71,7 +71,7 @@ try:
 
 			red.ChangeDutyCycle(0)
 			cx1.ChangeDutyCycle(0)
-			sinw.ChangeDutyCycle(0)
+			sin.ChangeDutyCycle(0)
 			GPIO.output(25, False)
 			plt.title('Object Lightcurve')
 			plt.tick_params(axis='y',which='both', left='off', right='off', labelleft='off')
