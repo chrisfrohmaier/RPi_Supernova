@@ -48,7 +48,7 @@ while True:
 		    time_array.append(t[i]);luxarray.append(np.mean(l1))
 		    #time_array.append(t[i]);luxarray.append(tsl.readFull())
 		    line.set_xdata(np.arange(len(luxarray)))
-		    line.set_ydata(ydata)
+		    line.set_ydata(luxarray)
 		    plt.draw()
 		    sleep(pause_time)
 		input_state == True
