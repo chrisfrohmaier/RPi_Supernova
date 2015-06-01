@@ -26,9 +26,11 @@ tsl=TSL2561()
 time_array=[]
 luxarray=[]
 print tsl.readLux(gain=1)
-
+plt.xlim(-5,70)
+plt.show()
 while True:
 	input_state=GPIO.input(22)
+	plt.clear()
 	if input_state == False:
 		print 'Button Pressed'
 		for i in range(0,len(m),2):      # 101 because it stops when it finishes 100  
@@ -41,10 +43,11 @@ while True:
 		    print np.mean(l1)
 		    time_array.append(t[i]);luxarray.append(np.mean(l1))
 		    #time_array.append(t[i]);luxarray.append(tsl.readFull())
+		    plt.scatter(time_array[-1], luxarray[-1])
+		plt.draw()
 		    sleep(pause_time)
 		input_state == True
 
 		red.ChangeDutyCycle(0)
 		
-		plt.scatter(time_array, luxarray)
-		plt.show()
+		
