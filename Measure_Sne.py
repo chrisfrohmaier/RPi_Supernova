@@ -36,7 +36,7 @@ while True:
 		plt.clf()
 		time_array=[0]
 		luxarray=[0]
-		line,=plt.scatter(luxarray,time_array)
+		line,=plt.plot(luxarray)
 		plt.xlim([-5,75])
 		for i in range(0,len(m),2):      # 101 because it stops when it finishes 100  
 		     
