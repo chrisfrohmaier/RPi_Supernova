@@ -51,10 +51,10 @@ while True:
 		    ymin = float(min(luxarray))-10
         	ymax = float(max(luxarray))+10
         	plt.ylim([ymin,ymax])
-		    line.set_xdata(np.arange(len(luxarray)))
-		    line.set_ydata(luxarray)
-		    plt.draw()
-		    sleep(pause_time)
+        	line.set_xdata(np.arange(len(luxarray)))
+        	line.set_ydata(luxarray)
+        	plt.draw()
+        	sleep(pause_time)
 		input_state == True
 
 		red.ChangeDutyCycle(0)
