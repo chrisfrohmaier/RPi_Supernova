@@ -27,7 +27,7 @@ time_array=[]
 luxarray=[]
 print tsl.readLux(gain=1)
 plt.xlim(-5,70)
-plt.show()
+plt.draw()
 while True:
 	input_state=GPIO.input(22)
 	plt.clear()
