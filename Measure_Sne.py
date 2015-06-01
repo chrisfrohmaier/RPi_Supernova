@@ -8,12 +8,12 @@ import sys
 GPIO.setmode(GPIO.BCM)  # choose BCM or BOARD numbering schemes. I use BCM  
   
 GPIO.setup(18, GPIO.OUT)# set GPIO 25 as output for supernova led  
-GPIO.setup(23, GPIO.OUT)# set GPIO 24 as output for green led  
-
+GPIO.setup(23, GPIO.OUT)# set GPIO 23 as output for green led  
+GPIO.setup(24, GPIO.OUT)# set GPIO 24 as CX1 for LED
 GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 #white = GPIO.PWM(24,10000)    # create object white for PWM on port 24 at 100 Hertz  
 red = GPIO.PWM(18, 400)      # create object red for PWM on port 23 at 100 Hertz  
-  
+cx1 = GPIO.PWM(24, 400)  
 #white.start(0)              # start white led on 0 percent duty cycle (off)  
 red.start(0)              # red fully on (100%)  
   
@@ -23,6 +23,7 @@ red.start(0)              # red fully on (100%)
 pause_time = 0.1           # you can change this to slow down/speed up  
 t=np.load('Ia_Time.npy')
 m=np.load('Ia_Mag.npy')
+cx1=np.load('CX.npy')
 
 tsl=TSL2561()
 
@@ -43,6 +44,7 @@ try:
 			for i in range(4,len(m),2):      # 101 because it stops when it finishes 100  
 			     
 			    red.ChangeDutyCycle(m[i])
+			    cx1.ChangeDutyCycle(cx[i])
 			    l1=[]
 			    for j in range(0,5):
 			    	l1.append(tsl.readFull())
@@ -60,9 +62,10 @@ try:
 			input_state == True
 
 			red.ChangeDutyCycle(0)
+			plt.title('Object Lightcurve')
 			plt.tick_params(axis='y',which='both', left='off', right='off', labelleft='off')
 			plt.xlabel('Days since Supernova Explosion')
-			plt.ylabel('Brightness (Increasing -->)')
+			plt.ylabel('Brightness')
 			plt.scatter(time_array, luxarray)
 			plt.draw()
 except KeyboardInterrupt:  
