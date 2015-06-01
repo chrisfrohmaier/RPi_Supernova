@@ -35,6 +35,7 @@ try:
 		input_state=GPIO.input(22)
 		
 		if input_state == False:
+			plt.clf()
 			GPIO.output(23, True)
 			print '--- Hubble Observation Started ----'
 			time_array=[]
