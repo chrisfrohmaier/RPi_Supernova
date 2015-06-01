@@ -28,7 +28,7 @@ tsl=TSL2561()
 
 print tsl.readLux(gain=1)
 plt.ion()
-plt.xlim(-5,75)
+plt.xlim(0,75)
 
 try: 
 	while True:
