@@ -30,7 +30,7 @@ plt.xlim(-5,70)
 plt.draw()
 while True:
 	input_state=GPIO.input(22)
-	plt.clear()
+	plt.clf()
 	if input_state == False:
 		print 'Button Pressed'
 		for i in range(0,len(m),2):      # 101 because it stops when it finishes 100  
