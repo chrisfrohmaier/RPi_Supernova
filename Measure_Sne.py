@@ -29,7 +29,7 @@ pause_time = 0.1           # you can change this to slow down/speed up
 t=np.load('Ia_Time.npy')
 m=np.load('Ia_Mag.npy')
 cx=np.load('CX.npy')
-sinw=np.load('Sine_Wave.npy')
+sinw=np.load('Sin_Wave.npy')
 
 tsl=TSL2561()
 
