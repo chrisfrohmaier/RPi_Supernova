@@ -30,40 +30,40 @@ print tsl.readLux(gain=1)
 plt.ion()
 plt.xlim(-5,75)
 
+try: 
+	while True:
+		input_state=GPIO.input(22)
+		
+		if input_state == False:
+			GPIO.output(23, True)
+			print '--- Hubble Observation Started ----'
+			time_array=[]
+			luxarray=[]
+			for i in range(4,len(m),2):      # 101 because it stops when it finishes 100  
+			     
+			    red.ChangeDutyCycle(m[i])
+			    l1=[]
+			    for j in range(0,5):
+			    	l1.append(tsl.readFull())
+			    	sleep(pause_time)
+			    sys.stdout.write("Hubble's Observed Brightness: %d   \r" % (np.median(l1)) )
 
-while True:
-	input_state=GPIO.input(22)
-	
-	if input_state == False:
-		GPIO.output(23, True)
-		print '--- Hubble Observation Started ----'
-		time_array=[]
-		luxarray=[]
-		for i in range(4,len(m),2):      # 101 because it stops when it finishes 100  
-		     
-		    red.ChangeDutyCycle(m[i])
-		    l1=[]
-		    for j in range(0,5):
-		    	l1.append(tsl.readFull())
-		    	sleep(pause_time)
-		    sys.stdout.write("Hubble's Observed Brightness: %d   \r" % (np.median(l1)) )
+			    
 
-		    
+			    sys.stdout.flush()
+			    time_array.append(t[i]);luxarray.append(np.median(l1))
+			    #time_array.append(t[i]);luxarray.append(tsl.readFull())
+			    sleep(pause_time)
+			print '--- Hubble Observation Finished ----'
+			GPIO.output(23, False)
+			input_state == True
 
-		    sys.stdout.flush()
-		    time_array.append(t[i]);luxarray.append(np.median(l1))
-		    #time_array.append(t[i]);luxarray.append(tsl.readFull())
-		    sleep(pause_time)
-		print '--- Hubble Observation Finished ----'
-		GPIO.output(23, False)
-		input_state == True
-
-		red.ChangeDutyCycle(0)
-		plt.tick_params(axis='y',which='both', left='off', right='off', labelleft='off')
-		plt.xlabel('Days since Supernova Explosion')
-		plt.ylabel('Brightness (Increasing -->)')
-		plt.scatter(time_array, luxarray)
-		plt.draw()
+			red.ChangeDutyCycle(0)
+			plt.tick_params(axis='y',which='both', left='off', right='off', labelleft='off')
+			plt.xlabel('Days since Supernova Explosion')
+			plt.ylabel('Brightness (Increasing -->)')
+			plt.scatter(time_array, luxarray)
+			plt.draw()
 except KeyboardInterrupt:  
     #white.stop()            # stop the white PWM output  
     red.stop()              # stop the red PWM output  
