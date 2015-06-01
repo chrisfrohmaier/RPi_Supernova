@@ -8,7 +8,7 @@ GPIO.setmode(GPIO.BCM)  # choose BCM or BOARD numbering schemes. I use BCM
   
 GPIO.setup(18, GPIO.OUT)# set GPIO 25 as output for white led  
 #GPIO.setup(24, GPIO.OUT)# set GPIO 24 as output for red led  
-  
+GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 #white = GPIO.PWM(24,10000)    # create object white for PWM on port 24 at 100 Hertz  
 red = GPIO.PWM(18, 400)      # create object red for PWM on port 23 at 100 Hertz  
   
@@ -26,17 +26,21 @@ tsl=TSL2561()
 time_array=[]
 luxarray=[]
 print tsl.readLux(gain=1)
-for i in range(0,len(m),2):      # 101 because it stops when it finishes 100  
-     
-    red.ChangeDutyCycle(m[i])
-    l1=[]
-    for j in range(0,5):
-    	l1.append(tsl.readFull())
-    	sleep(pause_time)
-    print np.mean(l1)
-    time_array.append(t[i]);luxarray.append(np.mean(l1))
-    #time_array.append(t[i]);luxarray.append(tsl.readFull())
-    sleep(pause_time) 
+while True:
+	input_state=GPIO.input(22)
+	if input_state == False:
+		print 'Button Pressed'
+		for i in range(0,len(m),2):      # 101 because it stops when it finishes 100  
+		     
+		    red.ChangeDutyCycle(m[i])
+		    l1=[]
+		    for j in range(0,5):
+		    	l1.append(tsl.readFull())
+		    	sleep(pause_time)
+		    print np.mean(l1)
+		    time_array.append(t[i]);luxarray.append(np.mean(l1))
+		    #time_array.append(t[i]);luxarray.append(tsl.readFull())
+		    sleep(pause_time) 
 red.ChangeDutyCycle(0)
 GPIO.cleanup()
 plt.scatter(time_array, luxarray)
