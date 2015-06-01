@@ -45,6 +45,6 @@ while True:
 		input_state == True
 
 		red.ChangeDutyCycle(0)
-		GPIO.cleanup()
+		
 		plt.scatter(time_array, luxarray)
 		plt.show()
