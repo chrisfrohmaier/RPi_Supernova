@@ -50,5 +50,5 @@ while True:
 
 		red.ChangeDutyCycle(0)
 		
-	plt.scatter(time_array, luxarray)
-	plt.draw()
+		plt.scatter(time_array, luxarray)
+		plt.draw()
