@@ -28,27 +28,29 @@ tsl=TSL2561()
 print tsl.readLux(gain=1)
 
 
-
-
 while True:
 	input_state=GPIO.input(22)
 	#plt.clf()
 	if input_state == False:
 		print 'Button Pressed'
+		plt.clf()
 		time_array=[0]
 		luxarray=[0]
 		line,=plt.plot(luxarray)
 		plt.xlim([-5,70])
-		for i in range(0,len(m),5):      # 101 because it stops when it finishes 100  
+		for i in range(0,len(m),2):      # 101 because it stops when it finishes 100  
 		     
 		    red.ChangeDutyCycle(m[i])
 		    l1=[]
 		    for j in range(0,5):
 		    	l1.append(tsl.readFull())
 		    	sleep(pause_time)
-		    print np.mean(l1)
+		    print np.median(l1)
 		    time_array.append(t[i]);luxarray.append(np.median(l1))
 		    #time_array.append(t[i]);luxarray.append(tsl.readFull())
+		    ymin = float(min(luxarray))-10
+        	ymax = float(max(luxarray))+10
+        	plt.ylim([ymin,ymax])
 		    line.set_xdata(np.arange(len(luxarray)))
 		    line.set_ydata(luxarray)
 		    plt.draw()
