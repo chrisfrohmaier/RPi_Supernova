@@ -23,7 +23,7 @@ red.start(0)              # red fully on (100%)
 pause_time = 0.1           # you can change this to slow down/speed up  
 t=np.load('Ia_Time.npy')
 m=np.load('Ia_Mag.npy')
-cx1=np.load('CX.npy')
+cx=np.load('CX.npy')
 
 tsl=TSL2561()
 
@@ -70,5 +70,6 @@ try:
 			plt.draw()
 except KeyboardInterrupt:  
     #white.stop()            # stop the white PWM output  
-    red.stop()              # stop the red PWM output  
+    red.stop()  
+    cx1.stop()            # stop the red PWM output  
     GPIO.cleanup()          # clean up GPIO on CTRL+C exit
