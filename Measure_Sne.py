@@ -52,7 +52,7 @@ try:
 			     
 			    red.ChangeDutyCycle(m[i])
 			    cx1.ChangeDutyCycle(cx[i])
-			    sinw.ChangeDutyCycle(sinw[i])
+			    sin.ChangeDutyCycle(sinw[i])
 			    l1=[]
 			    for j in range(0,5):
 			    	l1.append(tsl.readFull())
