@@ -30,10 +30,11 @@ plt.xlim(-5,75)
 
 while True:
 	input_state=GPIO.input(22)
-	time_array=[]
-	luxarray=[]
+	
 	if input_state == False:
 		print 'Button Pressed'
+		time_array=[]
+		luxarray=[]
 		for i in range(0,len(m),2):      # 101 because it stops when it finishes 100  
 		     
 		    red.ChangeDutyCycle(m[i])
