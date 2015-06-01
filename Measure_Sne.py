@@ -26,8 +26,9 @@ tsl=TSL2561()
 time_array=[]
 luxarray=[]
 print tsl.readLux(gain=1)
+input_state=GPIO.input(22)
 while True:
-	input_state=GPIO.input(22)
+	
 	if input_state == False:
 		print 'Button Pressed'
 		for i in range(0,len(m),2):      # 101 because it stops when it finishes 100  
@@ -43,7 +44,7 @@ while True:
 		    sleep(pause_time)
 		input_state == True
 
-	red.ChangeDutyCycle(0)
-	GPIO.cleanup()
-	plt.scatter(time_array, luxarray)
-	plt.show()
+		red.ChangeDutyCycle(0)
+		GPIO.cleanup()
+		plt.scatter(time_array, luxarray)
+		plt.show()
