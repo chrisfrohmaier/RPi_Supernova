@@ -35,7 +35,7 @@ while True:
 	input_state=GPIO.input(22)
 	
 	if input_state == False:
-		GPIO.output(23, False)
+		GPIO.output(23, True)
 		print '--- Hubble Observation Started ----'
 		time_array=[]
 		luxarray=[]
@@ -55,7 +55,7 @@ while True:
 		    #time_array.append(t[i]);luxarray.append(tsl.readFull())
 		    sleep(pause_time)
 		print '--- Hubble Observation Finished ----'
-		GPIO.output(23, True)
+		GPIO.output(23, False)
 		input_state == True
 
 		red.ChangeDutyCycle(0)
@@ -64,3 +64,7 @@ while True:
 		plt.ylabel('Brightness (Increasing -->)')
 		plt.scatter(time_array, luxarray)
 		plt.draw()
+except KeyboardInterrupt:  
+    #white.stop()            # stop the white PWM output  
+    red.stop()              # stop the red PWM output  
+    GPIO.cleanup()          # clean up GPIO on CTRL+C exit
