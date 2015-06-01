@@ -7,16 +7,17 @@ import matplotlib.pyplot as plt
 import sys
 GPIO.setmode(GPIO.BCM)  # choose BCM or BOARD numbering schemes. I use BCM  
   
-GPIO.setup(18, GPIO.OUT)# set GPIO 25 as output for supernova led  
+GPIO.setup(18, GPIO.OUT)# set GPIO 18 as output for supernova led  
 GPIO.setup(23, GPIO.OUT)# set GPIO 23 as output for green led  
 GPIO.setup(24, GPIO.OUT)# set GPIO 24 as CX1 for LED
+
 GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 #white = GPIO.PWM(24,10000)    # create object white for PWM on port 24 at 100 Hertz  
 red = GPIO.PWM(18, 400)      # create object red for PWM on port 23 at 100 Hertz  
 cx1 = GPIO.PWM(24, 400)  
 #white.start(0)              # start white led on 0 percent duty cycle (off)  
 red.start(0)              # red fully on (100%)  
-  
+cx1.start(0)  
 # now the fun starts, we'll vary the duty cycle to   
 # dim/brighten the leds, so one is bright while the other is dim  
   
