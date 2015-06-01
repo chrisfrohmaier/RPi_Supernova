@@ -22,19 +22,13 @@ pause_time = 0.1           # you can change this to slow down/speed up
 t=np.load('Ia_Time.npy')
 m=np.load('Ia_Mag.npy')
 
-plt.ion()
 tsl=TSL2561()
-time_array=[0]
-luxarray=[0]
+time_array=[]
+luxarray=[]
 print tsl.readLux(gain=1)
-
-line,=plt.plot(luxarray)
-plt.xlim([-5,70])
-plt.ylim([0,350])
-
+plt.xlim(-5,70)
 while True:
 	input_state=GPIO.input(22)
-	#plt.clf()
 	if input_state == False:
 		print 'Button Pressed'
 		for i in range(0,len(m),2):      # 101 because it stops when it finishes 100  
@@ -47,12 +41,10 @@ while True:
 		    print np.mean(l1)
 		    time_array.append(t[i]);luxarray.append(np.mean(l1))
 		    #time_array.append(t[i]);luxarray.append(tsl.readFull())
-		    line.set_xdata(np.arange(len(luxarray)))
-		    line.set_ydata(luxarray)
-		    plt.draw()
 		    sleep(pause_time)
 		input_state == True
 
 		red.ChangeDutyCycle(0)
 		
-		
+		plt.scatter(time_array, luxarray)
+		plt.show()
