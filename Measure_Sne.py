@@ -44,7 +44,7 @@ try:
 		if input_state == False:
 			plt.clf()
 			GPIO.output(23, True)
-			print '--- Hubble Observation Started ----'
+			print '##Hubble Observation Started##'
 			time_array=[]
 			luxarray=[]
 			GPIO.output(25, True)
@@ -57,7 +57,7 @@ try:
 			    for j in range(0,5):
 			    	l1.append(tsl.readFull())
 			    	sleep(pause_time)
-			    sys.stdout.write("  Hubble's Observed Brightness: %d   \r" % (np.median(l1)) )
+			    sys.stdout.write("Brightness: %d   \r" % (np.median(l1)) )
 
 			    
 
@@ -65,7 +65,7 @@ try:
 			    time_array.append(t[i]);luxarray.append(np.median(l1))
 			    #time_array.append(t[i]);luxarray.append(tsl.readFull())
 			    sleep(pause_time)
-			print '--- Hubble Observation Finished ----'
+			print '##Hubble Observation Finished##'
 			GPIO.output(23, False)
 			input_state == True
 
